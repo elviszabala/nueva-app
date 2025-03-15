@@ -10,22 +10,42 @@ export const Search = () => {
     
     const [searchQuery, setSearchQuery] = useState("");
     const [dialogVisible, setDialogVisible] = useState(false);
+    const [dialogError, setDialogError] = useState(false);
     const [queryToSearch, setQueryToSearch] = useState<string | null>(null);
-
     const { data, error, loading } = RequestData(queryToSearch ?? ''); // Use queryToSearch, not searchQuery
-    console.log("La data es: ", data?.name, "El error es: ", error, "El loading es: ", loading);
-
-  
-    if (searchQuery.trim() === '') {
-        isComplete = false;
-        
-        
-       
-    }
+    console.log("El error es(out): ", error);
+    console.log("searchquery(out): ", searchQuery);
    
+     
+   
+        
+        //console.log("El error es: ", error);
+    
+      
+        if (searchQuery.trim() === '') {
+           
+            
+            
+            console.log("DialogError: ", dialogError)
+            
+            
+            
+        }
+        if (error !== null){
+            console.log("Ahora es error")
+            alert(error)
+   
+        }
+       
+   
+
+
+
+
 
     
 
+ 
     const search = () => {
         if (!searchQuery.trim()) {
             
@@ -34,8 +54,6 @@ export const Search = () => {
         }
         Keyboard.dismiss();
         setQueryToSearch(searchQuery.trim());
-        // Trigger API call
-
     };
 
 
@@ -60,25 +78,30 @@ export const Search = () => {
         >
             Search
         </Button>
-        <Text style={{ color: 'red' }}> Hola</Text>
-        {loading && <ActivityIndicator animating={true} />}
-           { error && <Text style={{ color: 'red' }}>{error}</Text>}
-            {data && isComplete ? (
-                <View style={styles.card}>
-                    <Image
-                                                        source={{ uri: data.image }} // Asegúrate de que 'item' tenga una propiedad 'imageUrl'
-                                                        style={styles.image}
-                                                        contentFit='contain'
-                                                        
-                                                        
-                    />
-                    <View style={styles.textContainer}>
-                    <Text>Name: {data.name}</Text>
-                    <Text>Race: {data.race}</Text>
-                    <Text>Power Level: {data.ki}</Text>
-                    </View>
+       
+        
+           {dialogError ? (
+            <View>
+                 <Text style={{ color: 'red' }}> {error}</Text>
+            </View>
+           ) : (data &&  (
+            <View style={styles.card}>
+                <Image
+                    source={{ uri: data.image }} // Asegúrate de que 'item' tenga una propiedad 'imageUrl'
+                    style={styles.image}
+                    contentFit='contain'
+                                                    
+                                                    
+                />
+                <View style={styles.textContainer}>
+                <Text>Name: {data.name}</Text>
+                <Text>Race: {data.race}</Text>
+                <Text>Power Level: {data.ki}</Text>
                 </View>
-            ) : <View></View>}
+            </View>
+        ))}
+    
+    
          
         
 
@@ -87,6 +110,12 @@ export const Search = () => {
                 <Dialog.Title>Alert</Dialog.Title>
                 <Dialog.Content>
                     <Text>Cant be empty</Text>
+                </Dialog.Content>
+            </Dialog>
+            <Dialog visible={dialogError} onDismiss={() => setDialogError(false)}>
+                <Dialog.Title>Alert</Dialog.Title>
+                <Dialog.Content>
+                    <Text>{error}</Text>
                 </Dialog.Content>
             </Dialog>
         </Portal>

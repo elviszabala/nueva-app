@@ -23,7 +23,7 @@ export  const Main = () => {
 
   useEffect(() => {
 
-    console.log("Device: ", Device.modelName, "Checking config state: NONE Checking Darkmode: "  , isDarkTheme);
+   // console.log("Device: ", Device.modelName, "Checking config state: NONE Checking Darkmode: "  , isDarkTheme);
     
 
   }, []);
