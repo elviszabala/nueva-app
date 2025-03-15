@@ -11,7 +11,7 @@ import { ActivityIndicator } from 'react-native-paper';
 export const Front = ()  => {
 
     const {data, loading, error} = GetAllData();
-    const {data: data2, loading: loading2, error: error2} = RequestData();
+   
 
 
     if (loading) {
@@ -56,22 +56,7 @@ export const Front = ()  => {
                 <Text>No data available</Text>
             )}
         
-     {/*     {data && data.items ? (
-            <FlatList
-                data={Object.keys(data.items)}
-                renderItem={({ item }: { item: string }) => (
-                    <View style={styles.container}>
-                       
-                        <Text style={styles.text}>{data.items[item].name}</Text>
-                        
-                        
-                    </View>
-                )}
-                
-            />
-        ) : (
-            <Text>No data available</Text>
-        )}  */}
+     
 
         
     </View>

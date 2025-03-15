@@ -7,6 +7,7 @@ import {Main} from './src/Components/Main';
 
 
 
+
 export default function App() {
 
 
@@ -14,7 +15,9 @@ export default function App() {
   return (
 
     <ThemeProvider>
-    <Main />
+     
+      <Main />
+   
     </ThemeProvider>
    
    

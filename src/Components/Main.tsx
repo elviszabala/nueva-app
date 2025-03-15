@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useContext, useEffect, useState } from 'react';
-import {  SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import {  SafeAreaView, StyleSheet, Text, View,TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { PaperProvider, MD3DarkTheme as DefaultTheme, MD3LightTheme, FAB, ActivityIndicator, Button } from 'react-native-paper';
 import * as Device from 'expo-device';
@@ -11,9 +11,11 @@ import { Config, Search, Front } from '../Views/index';
 
 
 
+
 export  const Main = () => {
 
   const [menuVisible, setMenuVisible] = useState(false);
+  const [keyboardstatus, setKeyboardStatus] = useState(false);
   const [config, setConfig] = useState(false);
    const {isDarkTheme, toggleTheme, theme} = useContext(ThemeContext);
   
@@ -33,6 +35,7 @@ export  const Main = () => {
     
 
     if (menuVisible) {
+      setKeyboardStatus(!keyboardstatus);
       setMenuVisible(false);
       setConfig(false);
       
@@ -57,17 +60,22 @@ export  const Main = () => {
    
      
   }
+  const turnoff = () =>{
+    console.log("Keyboard status: ", keyboardstatus);
+    setMenuVisible(true)
+    setKeyboardStatus(!keyboardstatus); 
 
+  }  
 
 
 
   return (
 
- 
+  
     <PaperProvider theme={theme}>
       
 
-      
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} disabled={keyboardstatus}>
       <SafeAreaView style={[styles.container, { backgroundColor: theme.colors.background }]}>
         <StatusBar style={theme.mode==='adaptive' ? "light" : "dark"} /> 
 
@@ -83,7 +91,7 @@ export  const Main = () => {
           <View>
             <Search />
          <Button 
-            onPress={() => setMenuVisible(true)} 
+            onPress={() => turnoff()} 
             > 
             Show 10 characters
          
@@ -108,8 +116,9 @@ export  const Main = () => {
 
       </SafeAreaView>
       
-      
+      </TouchableWithoutFeedback>
     </PaperProvider>
+    
     
    
    

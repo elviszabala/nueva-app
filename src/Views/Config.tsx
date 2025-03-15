@@ -14,10 +14,7 @@ export const Config = () => {
     const {isDarkTheme, toggleTheme} = useContext(ThemeContext);
 
     const onToggleSwitch = () => setIsSwitchOn(!isSwitchOn);
-    const but = () => {
-        console.log("Current theme: ", isDarkTheme);
-        setIsSwitchOn2(!isSwitchOn2);
-    }
+   
 
   return (
 
@@ -27,22 +24,6 @@ export const Config = () => {
         <View style={styles.container}>
         <Text style={styles.header}>Config</Text>
             <View style={styles.optionRow}>
-                <Text style={styles.text}>Remember me</Text>
-                <Switch value={isSwitchOn} onValueChange={onToggleSwitch} />
-                <View>
-                    <Text style={styles.text}>{isSwitchOn ? 'On' : 'Off'}</
-                    Text>
-                </View>
-            </View>
-            <View style={styles.optionRow}>
-                <Text style={styles.text}>Dark Mode</Text>
-                <Switch value={isSwitchOn2} onValueChange={but} />
-                <View>
-                    <Text style={styles.text}>{isDarkTheme ? 'On' : 'Off'}</
-                    Text>
-                </View>
-            </View>
-            <View style={styles.optionRow}>
                 <Text style={styles.text}>Dark Mode {isDarkTheme}</Text>
                 <Switch value={isDarkTheme } onValueChange={toggleTheme} />
                 <View>
@@ -50,6 +31,15 @@ export const Config = () => {
                     Text>
                 </View>
             </View>
+            <View style={styles.optionRow}>
+                <Text style={styles.text}>Test {isDarkTheme}</Text>
+                <Switch value={isSwitchOn } onValueChange={onToggleSwitch} />
+                <View>
+                    <Text style={styles.text}>{isSwitchOn ? 'On' : 'Off'}</
+                    Text>
+                </View>
+            </View>
+            
         </View>
         
         
