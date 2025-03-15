@@ -22,6 +22,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "47ae7c3a-7e74-456a-a3af-9fce5447ab57"
+      }
+    },
+    "owner": "elviszabala"
   }
 }
