@@ -44,8 +44,10 @@ export const RequestData = (searchQuery: string) => {
                 if(axios.isAxiosError(error)){
                     //console.log(error.status)
                     //console.error(error.response);
-                    console.log("El error es(from request): ", error.response?.data)
-                    setError(error.response?.data?.message || "An unknown error occurred");
+                    const axiosError = error as AxiosError;
+                    console.log("El error es(from request): ", axiosError.response?.data)
+                    
+                    setError(axiosError.response?.data?.message || "An unknown error occurred");
                     
 
                 }else{
