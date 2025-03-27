@@ -7,6 +7,7 @@ export const RequestData = (searchQuery: string) => {
     const [data, setData] = useState<Character | null >();
     const [error, setError] = useState<String | null >(null);
     const [loading, setLoading] = useState<boolean>(true);
+    console.log("clicked inside requestData");
 
     
 
@@ -47,13 +48,14 @@ export const RequestData = (searchQuery: string) => {
                     const axiosError = error as AxiosError;
                     console.log("El error es(from request): ", axiosError.response?.data)
                     
-                    setError(axiosError.response?.data?.message || "An unknown error occurred");
+                    const errorMessage = (axiosError.response?.data as { message: string })?.message || "An unknown error occurred";
+                    setError(errorMessage);
                     
 
                 }else{
                     setError("Error al recopilar la informacion con el numero " + searchQuery + " Mensaje: " );
-                console.log("Error estoy: ", error, "Y es de typo: ", typeof(error));
-                console.log(data);
+                //console.log("Error estoy: ", error, "Y es de typo: ", typeof(error));
+                //console.log(data);
 
                 }
                 

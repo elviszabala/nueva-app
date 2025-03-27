@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { View, StyleSheet, ActivityIndicator, TouchableWithoutFeedback, Keyboard } from 'react-native'
+import { View, StyleSheet, ActivityIndicator, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native'
 import { Text, TextInput, Button, Dialog, Portal } from 'react-native-paper'
 import { RequestData } from '../Components/RequestData';
 import { Image } from 'expo-image';
@@ -12,41 +12,37 @@ export const Search = () => {
     const [dialogVisible, setDialogVisible] = useState(false);
     const [dialogError, setDialogError] = useState(false);
     const [queryToSearch, setQueryToSearch] = useState<string | null>(null);
-    const { data, error, loading } = RequestData(queryToSearch ?? ''); // Use queryToSearch, not searchQuery
-    console.log("El error es(out): ", error);
-    console.log("searchquery(out): ", searchQuery);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const { data, error, loading } = RequestData(queryToSearch ?? '') as { data: any, error: string, loading: boolean }; // Use queryToSearch, not searchQuery
+    //const [data, setData] = useState<any>(null);
+   // const [loading, setLoading] = useState<boolean>(false);
+
    
-     
-   
+    //console.log("searchquery(out): ", searchQuery);
+    console.log("Inicio el errorMessage con: ", errorMessage);
+
+    useEffect(() => {
+        //If the error is not null, show the dialog
+        console.log("ErrorUseEffect ", error);
+        if (error) {
+            Alert.alert('Error', error, [{ text: 'Ok', onPress: () => setErrorMessage(null) }]);
+            setDialogError(true);
+            setErrorMessage(error);
+        }
+    }, [error]);
+
+    useEffect(() => {
+        //console.log("Buscar: ", data);
+        setDialogError(false);
+
         
-        //console.log("El error es: ", error);
-    
-      
-        if (searchQuery.trim() === '') {
-           
-            
-            
-            console.log("DialogError: ", dialogError)
-            
-            
-            
-        }
-        if (error !== null){
-            console.log("Ahora es error")
-            alert(error)
-   
-        }
-       
+    }, [data]);
    
 
-
-
-
-
-    
 
  
     const search = () => {
+        console.log("clicked", searchQuery, queryToSearch);
         if (!searchQuery.trim()) {
             
             setDialogVisible(true);
@@ -82,7 +78,7 @@ export const Search = () => {
         
            {dialogError ? (
             <View>
-                 <Text style={{ color: 'red' }}> {error}</Text>
+                 <Text style={{ color: 'red' }}> {errorMessage}</Text>
             </View>
            ) : (data &&  (
             <View style={styles.card}>
@@ -110,12 +106,6 @@ export const Search = () => {
                 <Dialog.Title>Alert</Dialog.Title>
                 <Dialog.Content>
                     <Text>Cant be empty</Text>
-                </Dialog.Content>
-            </Dialog>
-            <Dialog visible={dialogError} onDismiss={() => setDialogError(false)}>
-                <Dialog.Title>Alert</Dialog.Title>
-                <Dialog.Content>
-                    <Text>{error}</Text>
                 </Dialog.Content>
             </Dialog>
         </Portal>
