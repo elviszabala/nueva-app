@@ -39,7 +39,7 @@ export const Search = () => {
     }, [data]);
    
 
-
+``
  
     const search = () => {
         console.log("clicked", searchQuery, queryToSearch);

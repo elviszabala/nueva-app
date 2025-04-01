@@ -7,7 +7,7 @@ export const RequestData = (searchQuery: string) => {
     const [data, setData] = useState<Character | null >();
     const [error, setError] = useState<String | null >(null);
     const [loading, setLoading] = useState<boolean>(true);
-    console.log("clicked inside requestData");
+    console.log("clicked inside requestData: ", searchQuery);
 
     
 
