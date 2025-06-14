@@ -83,26 +83,7 @@ export  const Main = () => {
 
         <Text style={[styles.text, {color: theme.colors.primary}]}>Welcome to React Native!</Text>
 
-        {config ? (
-          <Config />
-        ) : (
-          
-       
         
-        menuVisible ? (<Front />) : (
-          <View>
-            <Search />
-         <Button 
-            onPress={() => turnoff()} 
-            > 
-            Show 10 characters
-         
-         </Button>
-        
-         
-          </View>
-        )
-        )}
 
         
         
