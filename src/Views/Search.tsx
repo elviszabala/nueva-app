@@ -7,6 +7,9 @@ import { getCharacterById } from '../services/characterService';
 
 
 
+
+
+
 export const Search = () => {
 
     //let isComplete: boolean = true;
@@ -16,60 +19,8 @@ export const Search = () => {
     const [dialogError, setDialogError] = useState(false);
     const [queryToSearch, setQueryToSearch] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
-<<<<<<< Updated upstream
     //const { data, error, loading } = RequestData(queryToSearch ?? '') as { data: any, error: string, loading: boolean }; // Use queryToSearch, not searchQuery
     const [data, setData] = useState<any>(null);
-=======
-    const { data, error, loading } = RequestData(queryToSearch ?? '') as { data: any, error: string, loading: boolean }; // Use queryToSearch, not searchQuery
-    //const [data, setData] = useState<any>(null);
-   // const [loading, setLoading] = useState<boolean>(false);
-
-   
-    //console.log("searchquery(out): ", searchQuery);
-    console.log("Inicio el errorMessage con: ", errorMessage);
-
-    useEffect(() => {
-        //If the error is not null, show the dialog
-        console.log("ErrorUseEffect ", error);
-        if (error) {
-            Alert.alert('Error', error, [{ text: 'Ok', onPress: () => setErrorMessage(null) }]);
-            setDialogError(true);
-            setErrorMessage(error);
-        }
-    }, [error]);
-
-    useEffect(() => {
-        //console.log("Buscar: ", data);
-        setDialogError(false);
-
-        
-<<<<<<< Updated upstream
-    }, [data]);
-=======
-        //console.log("El error es: ", error);
-    
-      
-        if (searchQuery.trim() === '') {
-           
-            
-            
-            console.log("DialogError: ", dialogError)
-            
-            
-            
-        }
-        if (error !== null){
-            console.log("Ahora es error")
-            alert(error)
-            
-   
-        }
-       
->>>>>>> Stashed changes
-   
-
-``
->>>>>>> Stashed changes
  
    
 
