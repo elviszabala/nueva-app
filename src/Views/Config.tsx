@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react'
 import { View, StatusBar, StyleSheet } from 'react-native'
 import { Switch, Text, ThemeProvider } from 'react-native-paper'
 import { ThemeContext } from '../theme/ThemeContextv2';
+import { useAuth } from '../hooks/useAuth';
 
 
 
@@ -9,6 +10,8 @@ export const Config = () => {
     //const { toggleTheme, theme } = useContext(ThemeContext);
     const [isSwitchOn, setIsSwitchOn] = useState(false);
     const [isSwitchOn2, setIsSwitchOn2] = useState(false);
+
+    //const { user, loading } = useAuth();
 
 
     const {isDarkTheme, toggleTheme} = useContext(ThemeContext);
@@ -23,6 +26,20 @@ export const Config = () => {
         
         <View style={styles.container}>
         <Text style={styles.header}>Config</Text>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* this is the config screen always visible */}
             <View style={styles.optionRow}>
                 <Text style={styles.text}>Dark Mode {isDarkTheme}</Text>
                 <Switch value={isDarkTheme } onValueChange={toggleTheme} />

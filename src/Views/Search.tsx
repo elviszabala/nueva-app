@@ -24,8 +24,6 @@ export const Search = () => {
  
    
 
-
- 
     const search = async () => {
         //console.log("clicked button search, data: ", searchQuery, queryToSearch);
         if (!searchQuery.trim()) {

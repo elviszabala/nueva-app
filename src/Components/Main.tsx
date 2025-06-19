@@ -37,7 +37,7 @@ export  const Main = () => {
     
 
     if (menuVisible) {
-      setKeyboardStatus(!keyboardstatus);
+      //setKeyboardStatus(!keyboardstatus);
       setMenuVisible(false);
       setConfig(false);
       
@@ -65,7 +65,7 @@ export  const Main = () => {
   const turnoff = () =>{
     console.log("Keyboard status: ", keyboardstatus);
     setMenuVisible(true)
-    setKeyboardStatus(!keyboardstatus); 
+    //setKeyboardStatus(!keyboardstatus); 
 
   }  
 
@@ -83,11 +83,11 @@ export  const Main = () => {
 
         <Text style={[styles.text, {color: theme.colors.primary}]}>Welcome to React Native!</Text>
 
-        
-
-        
-        
-        
+        {config ? (
+          <Config />
+        ) : (
+          <Front />
+        )}
 
 
         <FAB
@@ -95,6 +95,13 @@ export  const Main = () => {
               style={styles.fab}
               onPress={toggleTheme}
               onLongPress={action}
+            />
+
+        <FAB
+              icon="cog"
+              style={[styles.fab, {bottom: 80}]}
+              onPress={action}
+              onLongPress={turnoff}
             />
 
       </SafeAreaView>
